@@ -62,6 +62,9 @@ func createMainMenu(app *tview.Application) *tview.List {
 		AddItem("Add Dns", "add dns to database", '2', func() {
 			switchAddDns(app)
 		}).
+		AddItem("Change Interface", "default is wifi", '3', func() {
+			switchChangeInterface(app)
+		}).
 		AddItem("Quit", "Exit the program", 'q', func() {
 			app.Stop()
 		})
@@ -119,8 +122,8 @@ func switchAddDns(app *tview.Application) {
 	inputSecondaryDns := tview.NewInputField().SetLabel("Secondary Dns: ")
 
 	form := tview.NewForm().
-		AddFormItem(inputPrimaryDns).
 		AddFormItem(inputName).
+		AddFormItem(inputPrimaryDns).
 		AddFormItem(inputSecondaryDns).
 		AddButton("Save", func() {
 			primaryDns := inputPrimaryDns.GetText()
@@ -143,6 +146,29 @@ func switchAddDns(app *tview.Application) {
 			}
 			switchToMainMenu(app, createMainMenu(app))
 		}).
+		AddButton("Back", func() {
+
+			switchToMainMenu(app, createMainMenu(app))
+		})
+
+	app.SetRoot(form, true)
+}
+
+func switchChangeInterface(app *tview.Application) {
+	interfaces := getInterfaces()
+	dropdown := tview.NewDropDown().
+		SetLabel("Select Interface option (hit Enter): ").
+		SetOptions(interfaces, func(text string, index int) {
+
+			storageHandler.SaveInterfaceConfigs(storageHandler.InterfaceConfig{
+				Name: strings.TrimSpace(text),
+			})
+
+			switchToMainMenu(app, createMainMenu(app))
+		})
+
+	form := tview.NewForm().
+		AddFormItem(dropdown).
 		AddButton("Back", func() {
 
 			switchToMainMenu(app, createMainMenu(app))
