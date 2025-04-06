@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Google DNS",
+    "primary_dns": "8.8.8.8",
+    "secondary_dns": "8.8.4.4"
+  },
+  {
+    "name": "Cloudflare DNS",
+    "primary_dns": "1.1.1.1",
+    "secondary_dns": "1.0.0.1"
+  },
+  {
+    "name": "Electro",
+    "primary_dns": "78.157.42.100",
+    "secondary_dns": "78.157.42.101"
+  },
+  {
+    "name": "cload",
+    "primary_dns": "1.1.1.1",
+    "secondary_dns": "1.0.0.1"
+  }
+]
