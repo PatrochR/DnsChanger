@@ -58,7 +58,9 @@ DNS configurations are saved in a JSON file:
   }
 ]
 ```
+
 You can edit (`interface_configs.json`) manually or add new entries from the UI.
+
 ---
 ## 📋 Dependencies
 - [rivo/tview](https://github.com/rivo/tview)
